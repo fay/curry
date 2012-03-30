@@ -1,4 +1,6 @@
+.DS_Store
 *.pyc
-*.swo
+*.pyo
+*.egg-info
 *.swp
-*.orig
+site_media/*
