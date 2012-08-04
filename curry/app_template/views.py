@@ -12,5 +12,6 @@ from django.utils.translation import ugettext, ugettext as _
 # Create your views here.
 
 def index(request):
-    return render('index.html')
+    context = {}
+    return render('index.html', context, RequestContext(request))
 
