@@ -7,6 +7,7 @@ setup(name='curry',
       description='',
       version='0.1',
       url='http://github.com/fay/curry',
+      scripts=['bin/curry',],
       packages=find_packages(),
       classifiers=[
           'Development Status :: 5 - Production/Stable',

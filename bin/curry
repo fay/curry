@@ -1,0 +1,24 @@
+#!/bin/bash
+CURRY_ENV=~/.curry
+
+if [ -e $CURRY_ENV ]
+then
+    echo "[curry] => CURRY ENV:" $CURRY_ENV
+else
+    if [ "$1" == "init" ]
+    then
+        echo "[curry] => Inittializing..."
+    else
+        echo "[curry] => ERROR: curry init first."
+        exit 1
+    fi
+fi
+
+if [ "$1" == "init" ]
+then
+    virtualenv $CURRY_ENV
+    $CURRY_ENV/bin/pip install -r requirements.txt
+else
+    echo "[curry] => command:" $*
+    $CURRY_ENV/bin/python manage.py $*
+fi
