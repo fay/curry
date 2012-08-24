@@ -2,8 +2,8 @@ from os import system,path
 
 from django.core.management.base import BaseCommand, CommandError
 
-from settings import PROJECT_ROOT
-import curry
+from django.conf import settings
+from curry import currycore
 
 class Command(BaseCommand):
     help = 'specify the cliparts images directory as args'
@@ -29,5 +29,5 @@ class Command(BaseCommand):
         (options, args) = parser.parse_args()
         """
         app_name = args[0]
-        CURRY_ROOT = path.abspath(path.dirname(curry.__file__))
-        system('cp -r %s/app_template %s' % (CURRY_ROOT,app_name))
+        CURRY_ROOT = path.abspath(path.dirname(currycore.__file__))
+        system('curry -r %s/app_template %s' % (CURRY_ROOT,app_name))
