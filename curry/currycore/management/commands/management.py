@@ -4,7 +4,7 @@ from optparse import make_option
 
 
 from django.core.management.base import AppCommand, BaseCommand, CommandError
-from django.template.loader import get_template
+from django.template.loader import render_to_string as render
 from django.conf import settings
 
 from curry import currycore
@@ -34,7 +34,7 @@ class Command(AppCommand):
             print "[curry] create management template to %s" % (management_dir)
         
         if not path.exists(command_file):
-            output = get_template("currycore/command.py")
+            output = render("currycore/command.py")
             f = open(command_file, 'w')
             f.write(output)
             f.close()

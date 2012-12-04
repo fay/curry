@@ -1,33 +1,19 @@
-from os import system,path
+from os import system, path
 
 from django.core.management.base import BaseCommand, CommandError
+from django.core.management.commands.startapp import Command as StartappCommand 
 
 from django.conf import settings
 from curry import currycore
+from curry.currycore.commands import CurryCommand
 
-class Command(BaseCommand):
-    help = 'specify the cliparts images directory as args'
+class Command(CurryCommand, StartappCommand):
 
-    """
-    user_option = (make_option('-d', '--directory',
-                       action='store',
-                       dest='source_dir',
-                       type='str',
-                       help='specify the clipart directory'),)
-    sys_option = (make_option('-f', '--file',
-                       action='store',
-                       dest='source_file',
-                       type='str',
-                       help='specify the clipart list file.'),)
-
-    option_list = BaseCommand.option_list + user_option + sys_option
-    """
-
-    def handle(self,*args,**options):
-        """
-        parser = OptionParser(option_list=self.option_list)
-        (options, args) = parser.parse_args()
-        """
-        app_name = args[0]
-        CURRY_ROOT = path.abspath(path.dirname(currycore.__file__))
-        system('curry -r %s/app_template %s' % (CURRY_ROOT,app_name))
+    def handle(self, app_name=None, target=None, **options):
+        curry_dir = self.curry_dir()
+        template = options.get('template', None)
+        if not template:
+            template = curry_dir + "/templates/currycore/app_template"
+            options['template'] = template
+        super(Command, self).handle(app_name, target, **options)
+        self.output("currycore/template_tag.py", path.join(app_name, "templatetags", app_name+ "_tags.py"))

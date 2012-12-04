@@ -1,4 +1,7 @@
 include curry/requirements.txt
 include curry/currycore/templates/currycore/*
+include curry/currycore/templates/currycore/app_template/*
+include curry/currycore/templates/currycore/app_template/templates/*
+include curry/currycore/templates/currycore/app_template/templatetags/*
 include curry/currycore/templates/currycore/management/*
 include curry/currycore/templates/currycore/management/commands/*
