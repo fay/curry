@@ -18,5 +18,7 @@ setup(name='curry',
           'Programming Language :: Python',
           'Framework :: Django',
       ],
+      install_requires=[
+      ],
       include_package_data=True,
       zip_safe=False)

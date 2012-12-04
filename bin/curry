@@ -1,9 +1,11 @@
 #!/bin/bash
 CURRY_ENV=~/.curry
+CURRY_LIB=`$CURRY_ENV/bin/python -c "import curry,os;print os.path.dirname(curry.__file__)"`
 
 if [ -e $CURRY_ENV ]
 then
     echo "[curry] => CURRY ENV:" $CURRY_ENV
+    echo "[curry] => CURRY LIB:" $CURRY_LIB
 else
     if [ "$1" == "init" ]
     then
@@ -17,8 +19,8 @@ fi
 if [ "$1" == "init" ]
 then
     virtualenv $CURRY_ENV
-    $CURRY_ENV/bin/pip install -r requirements.txt
+    $CURRY_ENV/bin/pip install -r $CURRY_LIB/requirements.txt
 else
     echo "[curry] => command:" $*
-    $CURRY_ENV/bin/python manage.py $*
+    $CURRY_ENV/bin/python $CURRY_LIB/manage.py $*
 fi
