@@ -9,9 +9,9 @@ then
 else
     if [ "$1" == "init" ]
     then
-        echo "[curry] => Inittializing..."
+        echo "[curry] => Initializing..."
     else
-        echo "[curry] ERROR => curry init first."
+        echo "[curry] ERROR => [curry init] first."
         exit 1
     fi
 fi
@@ -19,6 +19,7 @@ fi
 if [ "$1" == "init" ]
 then
     virtualenv $CURRY_ENV
+    CURRY_LIB=`python -c "import curry,os;print os.path.dirname(curry.__file__)"`
     $CURRY_ENV/bin/pip install -r $CURRY_LIB/requirements.txt
 else
     echo "[curry] COMMAND =>" $*

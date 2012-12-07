@@ -1,4 +1,5 @@
 from os import system, path
+import sh
 
 from django.core.management.base import BaseCommand, CommandError
 from django.core.management.commands.startapp import Command as StartappCommand 
@@ -13,7 +14,7 @@ class Command(CurryCommand, StartappCommand):
         curry_dir = self.curry_dir()
         template = options.get('template', None)
         if not template:
-            template = curry_dir + "/templates/currycore/app_template"
+            template = path.join(curry_dir, "templates/currycore/app_template")
             options['template'] = template
         super(Command, self).handle(app_name, target, **options)
         self.output("currycore/template_tag.py", path.join(app_name, "templatetags", app_name+ "_tags.py"))
