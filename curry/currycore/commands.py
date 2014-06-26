@@ -7,12 +7,12 @@ from django.core.management.base import AppCommand, BaseCommand, CommandError
 from django.template.loader import render_to_string as render
 from django.conf import settings
 
-from curry import d
-from curry.d.utils import touch_init_file
+from curry import currycore
+from curry.currycore.utils import touch_init_file
 
 class CurryCommand(BaseCommand):
 
-    CURRY_ROOT = path.abspath(path.dirname(d.__file__)) #: get curry core directory
+    CURRY_ROOT = path.abspath(path.dirname(currycore.__file__)) #: get curry core directory
 
     def output(self, template_name, output_file):
         content = render(template_name)
