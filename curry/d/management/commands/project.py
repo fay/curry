@@ -5,7 +5,7 @@ from django.core.management.base import AppCommand, BaseCommand, CommandError
 from django.conf import settings
 from django.core.management.commands.startproject import Command as StartProjectCommand 
 
-from curry.currycore.commands import CurryCommand
+from curry.d.commands import CurryCommand
 
 class Command(CurryCommand, StartProjectCommand):
 
