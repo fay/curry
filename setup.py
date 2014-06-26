@@ -19,6 +19,7 @@ setup(name='curry',
           'Framework :: Django',
       ],
       install_requires=[
+          'sh',
       ],
       include_package_data=True,
       zip_safe=False)
